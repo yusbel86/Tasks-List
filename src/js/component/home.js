@@ -20,10 +20,17 @@ export function Home() {
 					}
 				}}
 			/>
-
-			{list.map((item, index) => {
-				return <div key={index}>{item}</div>;
-			})}
+			<div className="container">
+				<ul className="list-group-flush">
+					{list.map((item, index) => {
+						return (
+							<div key={index} className="list-group-item">
+								{item}
+							</div>
+						);
+					})}
+				</ul>
+			</div>
 		</div>
 	);
 }

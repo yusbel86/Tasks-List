@@ -6,24 +6,24 @@ import rigoImage from "../../img/rigo-baby.jpg";
 //create your first component
 export function Home() {
 	const [contenido, setContenido] = useState();
-	const [display, setDisplay] = useState();
+	const [list, setList] = useState([]);
 
-	function click(e) {
-		setContenido(e.target.value);
-	}
 	return (
 		<div className="text-center mt-5">
-			<input onChange={e => click(e)} />
-			<br />
-			<button
-				type="button"
-				className="btn btn-primary"
-				onClick={() => setDisplay(contenido)}>
-				Primary
-			</button>
+			<input
+				value={contenido}
+				onChange={e => setContenido(e.target.value)}
+				onKeyPress={e => {
+					if (e.key === "Enter") {
+						setList(list.concat(contenido));
+						setContenido("");
+					}
+				}}
+			/>
 
-			<h1>{contenido}</h1>
-			<h1>{display}</h1>
+			{list.map((item, index) => {
+				return <div key={index}>{item}</div>;
+			})}
 		</div>
 	);
 }
